@@ -7,6 +7,7 @@
 			@input="$emit('update:searchQuery', $event.target.value)"
 		>
 		</AppInput>
+
 		<div class="checkbox-container">
 			<AppInputCheckbox
 				v-for="category in categories"
@@ -22,8 +23,10 @@
 </template>
 
 <script setup>
-import AppInput from "../components/UI/AppInput.vue";
-import AppInputCheckbox from "../components/UI/AppInputCheckbox.vue";
+import {
+	AppInput,
+	AppInputCheckbox
+} from "./";
 
 const props = defineProps({
 	searchQuery: {

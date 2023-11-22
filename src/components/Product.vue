@@ -3,17 +3,20 @@
 		<picture class="products__item__img">
 			<img src="/public/product.png" :alt="product.title">
 		</picture>
+
 		<div class="products__item__text">
 			<h4 class="products__item__category">{{ product.category }}</h4>
 			<h3 class="products__item__title">{{ product.title }}</h3>
 			<p class="products__item__price">{{ product.price }} $</p>
-			<Button @click="emit('openModal')">Add to basket</Button>
+			<AppButton @click="emit('openModal')">Add to basket</AppButton>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import Button from "./UI/AppButton.vue";
+import {
+	AppButton,
+} from "./";
 
 const props = defineProps({
 	product: {

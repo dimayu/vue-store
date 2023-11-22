@@ -2,6 +2,7 @@
 		<AppButton
 			@click="isGrid = !isGrid"
 		>{{!isGrid ? "List" : "Grid"}}</AppButton>
+
 		<TransitionGroup tag="div" class="products" :class="{ list: !isGrid }">
 			<Product
 				v-for="product in products"
@@ -15,10 +16,11 @@
 
 <script setup>
 import { ref } from "vue";
-import Product from "./Product.vue";
-import AppButton from "./UI/AppButton.vue";
 
-import dataProducts from "../data/products";
+import {
+	AppButton,
+	Product
+} from "./";
 
 const isGrid = ref(true);
 

@@ -14,9 +14,10 @@
 				@openModal="openModalAddProduct"
 			/>
 		</main>
+
 		<aside class="aside">
 			<ProductsBasket
-				:productsBasket="productsInBasket"
+				:productsBasket="basketStore.productsInBasket"
 				@removeProduct="removeProductFromBasket"
 			/>
 		</aside>
@@ -68,12 +69,15 @@ import {
 	ProductsBasket,
 } from "./components";
 
+import { useBasketStore } from './stores/data'
+
+const basketStore = useBasketStore();
+
 const searchQuery = ref('')
 const categoryName = ref([]);
 const isModalVisible = ref(false);
 const idProduct = ref('');
 const quantity = ref(1);
-const productsInBasket = ref([]);
 
 const result = {};
 const categories = dataProducts.map(item => result[item.category] = true);
@@ -104,14 +108,13 @@ const addProduct = computed(() => {
 });
 
 const addProductToBasket = () => {
-	addProduct.value.total = Number(quantity.value);
-	productsInBasket.value.push(addProduct.value);
+	basketStore.addProductToBasket(addProduct.value, quantity.value);
 	isModalVisible.value = false;
 	quantity.value = 1;
 };
 
 const removeProductFromBasket = (id) => {
-	productsInBasket.value = productsInBasket.value.filter(item => item.id !== id);
+	basketStore.removeProductFromBasket(id)
 };
 
 </script>

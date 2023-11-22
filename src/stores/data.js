@@ -1,12 +1,17 @@
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useProducts = defineStore('counter', () => {
-    const count = ref(0)
-    const doubleCount = computed(() => count.value * 2)
-    function increment() {
-        count.value++
-    }
+export const useBasketStore = defineStore('basketStore', () => {
+    const productsInBasket = ref([]);
 
-    return { count, doubleCount, increment }
+    const addProductToBasket = (addProduct, quantity) => {
+        addProduct.total = Number(quantity);
+        productsInBasket.value.push(addProduct);
+    };
+
+    const removeProductFromBasket = (id) => {
+        productsInBasket.value = productsInBasket.value.filter(item => item.id !== id);
+    };
+
+    return { productsInBasket, addProductToBasket, removeProductFromBasket }
 })

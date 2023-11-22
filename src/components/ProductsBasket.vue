@@ -2,6 +2,7 @@
 	<div class="basket">
 		<h2 class="basket__title">Basket</h2>
 		<h3 class="basket__subtitle">Products</h3>
+
 		<TransitionGroup tag="div" class="products">
 			<div
 				v-for="product in productsBasket"
@@ -29,6 +30,7 @@
 				>Remove</AppButton>
 			</div>
 		</TransitionGroup>
+
 		<div class="basket__total-price">
 			<span>Total amount of products</span>
 			<span>{{ calculationTotalPrice }} $</span>
@@ -37,7 +39,10 @@
 </template>
 
 <script setup>
-import AppButton from "./UI/AppButton.vue";
+import {
+	AppButton,
+} from "./";
+
 import { computed } from "vue";
 
 const props = defineProps({
